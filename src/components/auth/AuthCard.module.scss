@@ -12,22 +12,32 @@
     display: flex;
     flex-direction: column;
 
+    label{
+      font-family: "BebasNeue";
+    }
+
     input {
+      border: none;
       margin-bottom: 2rem;
+      height: 2rem;
+      border-radius: var(--radius);
+      background-color: var(--muted-foreground);
     }
   }
 
   .actions {
+    width: fit-content;
     display: flex;
     align-items: center;
-    gap: 5rem;
+    gap: 4rem;
     padding: 1rem;
 
     p {
-      font-weight: 600;
-      line-height: 3rem;
+      font-family: "BebasNeue";
+      line-height: 2rem;
 
       a {
+        line-height: 3rem;
         color: red;
         cursor: pointer;
 

@@ -12,11 +12,17 @@ const AuthCard = ({ isSignIn = false }: Props) => {
     <div className={styles.auth_card}>
       <Logo />
       <form>
-        <label htmlFor="email">Email</label>
-        <input type="email" id="email" />
+        {isSignIn && (
+          <>
+            <label htmlFor="email/username">Email / Username</label>
+            <input type="text" id="email/username"></input>
+          </>
+        )}
         {!isSignIn && (
           <>
-            <label htmlFor="username"></label>
+          <label htmlFor="email">Email</label>
+          <input type="email" id="email" />
+            <label htmlFor="username">Username</label>
             <input type="text" id="username" />
           </>
         )}
@@ -32,7 +38,7 @@ const AuthCard = ({ isSignIn = false }: Props) => {
       <div className={styles.actions}>
         {isSignIn ? (
           <p>
-            New in Dawflix?
+            New Here?
             <a>
               <br />
               SIGN UP
@@ -40,7 +46,9 @@ const AuthCard = ({ isSignIn = false }: Props) => {
           </p>
         ) : (
           <p >
-            Already a member?
+            Already 
+            <br />
+            a member?
             <a href="/sign-in">
               <br />
               SIGN IN
