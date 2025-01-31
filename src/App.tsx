@@ -4,6 +4,8 @@ import MainLayout from "@/layouts/MainLayout";
 import Home from "@/pages/Home";
 import SignIn from "@/pages/SignIn";
 import SignUp from "@/pages/SignUp";
+import Movies from "@/pages/Movies";
+import Series from "@/pages/Series";
 
 function App() {
   return (
@@ -12,8 +14,8 @@ function App() {
         <Route path="/" element={<MainLayout />}>
           {/* Client */}
           <Route index element={<Home />} />
-          <Route path="/films" element={<div>Films</div>} />
-          <Route path="/series" element={<div>Series</div>} />
+          <Route path="/films" element={<Movies />} />
+          <Route path="/series" element={<Series />} />
           <Route path="/categories" element={<div>Categories</div>} />
 
           {/* Auth */}
