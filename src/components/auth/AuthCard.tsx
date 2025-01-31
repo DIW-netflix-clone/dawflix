@@ -39,7 +39,7 @@ const AuthCard = ({ isSignIn = false }: Props) => {
         {isSignIn ? (
           <p>
             New Here?
-            <a>
+            <a href="/sign-up">
               <br />
               SIGN UP
             </a>
