@@ -1,7 +1,7 @@
 import { FirebaseAuth } from "./firebaseInit";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut as firebaseSignOut } from "firebase/auth";
 
-// Tipado de los parámetros de las funciones
+
 export const createUser = async (email: string, password: string) => {
   return createUserWithEmailAndPassword(FirebaseAuth, email, password);
 };
