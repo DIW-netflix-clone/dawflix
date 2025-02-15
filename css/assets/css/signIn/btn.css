@@ -1,0 +1,11 @@
+.body-btn {
+    margin-top: 40px;
+    width: 80%;
+
+    display: flex; 
+    flex-direction: column;
+}
+
+.body-btn > div {
+    height: 50px;
+}

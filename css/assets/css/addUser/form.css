@@ -1,0 +1,14 @@
+.infoProfile_input-style {
+    border-radius: 10px;
+    background: #656464;
+
+    height: 36px;
+    border-width: 0px;
+}
+
+#infoProfile_input {
+    margin: 10px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

@@ -1,0 +1,42 @@
+.profilePic {
+    width: 80px;
+
+    border-radius: 10%;
+}
+
+.imageProfile {
+    position: relative;
+}
+
+.imageProfile {
+    display: flex;
+    justify-content: center;
+}
+
+.imageProfile > img {
+    width: 100px;
+}
+
+.mask-text {
+    position: absolute;
+    z-index: 3;
+
+    top: 25%;
+
+    text-align: center;
+}
+
+.profilePic-mask {
+    position: absolute;
+
+    z-index: 2;
+
+    width: 100px;
+    height: 100px;
+
+    top: 0%;
+
+    border-radius: 10%;
+
+    background-color: rgba(93,93,93, 0.8);
+}

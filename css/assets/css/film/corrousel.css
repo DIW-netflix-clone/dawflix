@@ -1,0 +1,47 @@
+.carousel {
+    display: flex;
+
+    overflow: hidden;
+
+    overflow-x: scroll;
+    scrollbar-color: white black;
+}
+
+/* Posiciones pares */
+/* 
+ La subclase :nth-child(...) solo afectaria a los elementos dentro de una lista,
+ como por ejemplo los <li> dentro de un <ul>, en este caso se accede a un elemento
+ padre que itera por los elementos hijos PARES/IMPARES 
+*/
+#filmBody > div:nth-child(even) .carousel-txt {
+    text-align: right;
+
+    margin-right: 10px;
+}
+
+/* Posiciones impares */
+/* 
+ La subclase :nth-child(...) solo afectaria a los elementos dentro de una lista,
+ como por ejemplo los <li> dentro de un <ul>, en este caso se accede a un elemento
+ padre que itera por los elementos hijos PARES/IMPARES 
+*/
+#filmBody > div:nth-child(odd) .carousel-txt {
+    text-align: left;
+
+    margin-left: 10px;
+}
+
+.diapositiva > img {
+    width: 103px;
+
+    opacity: 0.6;
+
+    margin: 10px;
+
+    transition: all 0.3s ease-in-out;
+}
+
+.diapositiva > img:hover {
+    opacity: 1;
+    transform: scale(1.2);
+}

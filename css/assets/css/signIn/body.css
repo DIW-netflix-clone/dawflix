@@ -1,0 +1,33 @@
+#signIn-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    margin-top: 60px;
+}
+
+#signIn-formulario {
+    width: 70%;
+}
+
+.inputText {
+    /* background-color: aqua; */
+
+    display: flex;
+    flex-direction: column;
+
+    color: whitesmoke;
+    font-size: 25px;
+}
+
+.inputText:nth-child(even) {
+    margin-top: 20px;
+}
+
+#newHere {
+    background-color: aqua;
+}
+
+.white, .red {
+    font-size: 37px;
+}

@@ -1,0 +1,21 @@
+@media (min-width: 768px) {
+    #upTags {
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .diapositiva > img {
+        width: 160px;
+        height: 160px;
+        object-fit: cover;
+    }
+
+    .botNavBar {
+        display: flex;
+        justify-content: center;
+    }
+
+    .botNavBar > div {
+        width: 60%;
+    }
+}

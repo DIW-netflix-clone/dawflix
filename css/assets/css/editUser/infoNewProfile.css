@@ -1,0 +1,18 @@
+#infoNewProfile {
+    display: flex;
+    flex-direction: row;
+}
+
+#infoNewProfile_img > img {
+    width: 215px;
+
+    border-radius: 20px;
+}
+
+#infoProfile_input {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    margin: 10px 20px;
+}

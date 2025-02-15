@@ -1,0 +1,34 @@
+#top {
+    display: flex;
+    justify-content: space-between;
+}
+
+#isSelected {
+    color: whitesmoke;
+}
+
+.unSelected {
+    color: rgb(33, 37, 41);
+}
+
+#isSelected, .unSelected {
+    font-size: 30px;
+
+    margin: 0px 10px 10px 0px;
+}
+
+#upTags {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.unSelected {
+    transition: all 0.2s ease-in;
+}
+
+.unSelected:hover {
+    color: rgb(93, 93, 93);
+    /* text-shadow: 1px 1px 2px rgba(93, 93, 93, 0.5); */
+}
