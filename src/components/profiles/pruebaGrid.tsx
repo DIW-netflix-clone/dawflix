@@ -106,10 +106,10 @@ const PerfilGrid: React.FC = () => {
 
   // Imágenes para elegir
   const imagenes = [
-    "https://placehold.co/64",
-    "https://placehold.co/64/ff0000",
-    "https://placehold.co/64/00ff00",
-    "https://placehold.co/64/0000ff",
+    "/logo-user1.webp",
+    "/logo-user2.webp",
+    "/logo-user3.webp",
+    "/logo-user4.webp",
   ];
 
   return (
@@ -126,10 +126,11 @@ const PerfilGrid: React.FC = () => {
           </div>
         ))}
 
-        <button className={styles.add_button} onClick={abrirModal}>
-          Añadir Perfil
-        </button>
+        
       </div>
+      <button className={styles.add_button} onClick={abrirModal}>
+          Añadir Perfil
+      </button>
       {/* Modal */}
       {isModalOpen && (
         <div className={styles.modal}>
