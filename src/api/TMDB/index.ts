@@ -11,11 +11,21 @@ const options = {
   },
 };
 
-export const getSeries = async () => {
+export const getSeries = async (url = "discover/tv") => {
   try {
     console.log(options);
-    const { data } = await axios.get(`${TMDB_URL}/discover/tv`, options);
-    return data.results;
+    const { data } = await axios.get(`${TMDB_URL}/${url}`, options);
+    return await data.results;
+  } catch (error: unknown) {
+    console.log(error);
+    return null;
+  }
+};
+
+export const getMovies = async (url = "discover/movie") => {
+  try {
+    const { data } = await axios.get(`${TMDB_URL}/${url}`, options);
+    return await data.results;
   } catch (error: unknown) {
     console.log(error);
     return null;

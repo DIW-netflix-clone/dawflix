@@ -7,6 +7,7 @@ import SignUp from "@/pages/SignUp";
 import Movies from "@/pages/Movies";
 import Series from "@/pages/Series";
 import Profiles from "@/pages/Profiles";
+import DiscoverLayout from "./layouts/DiscoverLayout";
 
 function App() {
   return (
@@ -15,10 +16,12 @@ function App() {
         <Route path="/" element={<MainLayout />}>
           {/* Client */}
           <Route index element={<Home />} />
-          <Route path="/films" element={<Movies />} />
-          <Route path="/series" element={<Series />} />
-          <Route path="/categories" element={<div>Categories</div>} />
-          <Route path="/profiles" element={<Profiles/>}/>
+          <Route element={<DiscoverLayout />}>
+            <Route path="/films" element={<Movies />} />
+            <Route path="/series" element={<Series />} />
+            <Route path="/categories" element={<div>Categories</div>} />
+          </Route>
+          <Route path="/profiles" element={<Profiles />} />
           {/* Auth */}
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
