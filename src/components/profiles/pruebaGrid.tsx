@@ -1,58 +1,64 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Importa useNavigate para redirigir
 import styles from './pruebaGrid.module.scss'; // Archivo SCSS para estilos
 import { isSignIn } from "@/firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { FirestoreDB } from "@/firebase/firebaseInit";
+import {v4 as uuidv4} from "uuid";
 
 interface Perfil {
-  id: number;
+  id: string;
   nombre: string;
   imagen: string;
 }
 
 const PerfilGrid: React.FC = () => {
   const [perfiles, setPerfiles] = useState<Perfil[]>([]);
-
-  // Estado para controlar la visibilidad del modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newNombre, setNewNombre] = useState("");
   const [newImagen, setNewImagen] = useState("");
-
-  // Estado para almacenar el UID
   const [uid, setUid] = useState<string | null>(null);
+  const navigate = useNavigate(); // Inicializa el hook para navegar entre páginas
 
-  // Usamos useEffect para obtener el UID del usuario cuando el componente se monta
   useEffect(() => {
     const obtenerUid = async () => {
-      const userUid = await isSignIn();  // Obtener UID si el usuario está autenticado
-      setUid(userUid); // Guardamos el UID en el estado
+      const userUid = await isSignIn();
+      setUid(userUid);
+    };
+    obtenerUid();
+  }, []);
+
+  useEffect(() => {
+    if (!uid) return;
+
+    const obtenerPerfiles = async () => {
+      try {
+        const docRef = doc(FirestoreDB, "users", uid);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          const perfilesGuardados = data?.perfiles || [];
+          setPerfiles(perfilesGuardados);
+
+          if (perfilesGuardados.length === 0) {
+            abrirModal();
+          }
+        } else {
+          abrirModal();
+        }
+      } catch (error) {
+        console.error("Error al obtener perfiles de Firestore:", error);
+      }
     };
 
-    obtenerUid();
-  }, []);  // Se ejecuta solo una vez, cuando el componente se monta
+    obtenerPerfiles();
+  }, [uid]);
 
-  // Este useEffect se ejecutará cada vez que el estado `uid` cambie
-  useEffect(() => {
-    if (uid === null) {
-      console.log("El usuario no está autenticado.");
-    } else {
-      console.log(`El usuario está autenticado, UID: ${uid}`);
-    }
-  }, [uid]);  // Esto asegura que se ejecutará cada vez que `uid` cambie
-
-  // Si no hay perfiles, se abre el modal automáticamente
-  useEffect(() => {
-    if (perfiles.length === 0) {
-      abrirModal();  // Abre el modal si no hay perfiles
-    }
-  }, [perfiles]);  // Solo se ejecuta cuando el array de perfiles cambia
-
-  // Función para abrir el modal
   const abrirModal = () => {
     setIsModalOpen(true);
   };
 
-  // Función para cerrar el modal
   const cerrarModal = () => {
     setIsModalOpen(false);
   };
@@ -62,52 +68,41 @@ const PerfilGrid: React.FC = () => {
       console.error("El usuario no está autenticado. No se puede agregar el perfil.");
       return;
     }
-  
+
     const nuevoPerfil: Perfil = {
-      id: perfiles.length + 1, // Podrías usar Firestore para autogenerar IDs
+      id: uuidv4(), // Puedes generar un ID más robusto
       nombre: newNombre,
       imagen: newImagen,
     };
-  
-    setPerfiles([...perfiles, nuevoPerfil]);
+
+    const nuevosPerfiles = [...perfiles, nuevoPerfil];
+    setPerfiles(nuevosPerfiles);
     setNewNombre("");
     setNewImagen("");
-  
+
     try {
-      // Obtener el documento del usuario para ver si ya tiene perfiles
       const docRef = doc(FirestoreDB, "users", uid);
       const docSnap = await getDoc(docRef);
-  
-      // Obtener el email del usuario, que debe estar almacenado en la autenticación
-      const userEmail = uid; // Si el uid es el email, reemplázalo si es necesario. Si tienes una referencia separada para email, obténla aquí
-  
-      if (docSnap.exists()) {
-        // Si el usuario ya tiene perfiles, agregar el nuevo perfil a la lista existente
-        const data = docSnap.data();
-        const perfilesExistentes = data?.perfiles || [];
-        const emailExistente = data?.email || userEmail; // Mantener el email si ya existe, o asignar el nuevo
-  
-        // Actualizar el documento con los perfiles anteriores y el nuevo perfil
-        await setDoc(docRef, {
-          email: emailExistente, // Guardar el email
-          perfiles: [...perfilesExistentes, nuevoPerfil],
-        });
-        console.log("Perfil guardado en Firestore con éxito.");
-      } else {
-        // Si no existen perfiles, se eliminan los datos previos y se guarda el nuevo perfil
-        await setDoc(docRef, {
-          email: userEmail, // Guardar el email
-          perfiles: [nuevoPerfil],
-        });
-        console.log("Nuevo perfil guardado en Firestore.");
-      }
+      const data = docSnap.data();
+
+      await setDoc(docRef, {
+        ...data,
+        perfiles: nuevosPerfiles,
+      });
+
+      console.log("Perfil guardado en Firestore con éxito.");
     } catch (error) {
       console.error("Error al guardar el perfil en Firestore:", error);
     }
-  
-    cerrarModal(); // Cerrar el modal después de añadir el perfil
+
+    cerrarModal();
   };
-  
+
+  // Función para manejar la selección de un perfil
+  const seleccionarPerfil = (perfil: Perfil) => {
+    // Redirigir a la pantalla 'movies' pasando los datos del perfil como estado
+    navigate("/films", { state: { perfil } });
+  };
 
   // Imágenes para elegir
   const imagenes = [
@@ -121,9 +116,13 @@ const PerfilGrid: React.FC = () => {
     <div className={styles.perfil_grid_container}>
       <div className={styles.perfil_grid}>
         {perfiles.map((perfil) => (
-          <div key={perfil.id} className={styles.perfil_card}>
+          <div
+            key={perfil.id}
+            className={styles.perfil_card}
+            onClick={() => seleccionarPerfil(perfil)} // Al hacer clic, redirigir a la página de 'movies'
+          >
             <img src={perfil.imagen} alt={perfil.nombre} />
-            <div className={styles.perfil_name}>{perfil.nombre}</div>
+            <p className={styles.perfil_name}>{perfil.nombre}</p>
           </div>
         ))}
 

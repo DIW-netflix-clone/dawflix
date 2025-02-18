@@ -1,7 +1,15 @@
-const Movies = () => {
-  return (
-    <div>Movies</div>
-  )
-}
+import Logo from "@/components/Logo";
+import Movies from "@/components/movies/movies";
 
-export default Movies
+
+const Home = () => {
+
+  return (
+    <>
+      <Logo />
+      <Movies/>
+    </>
+  );
+};
+
+export default Home;
