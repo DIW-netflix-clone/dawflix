@@ -1,13 +1,12 @@
 import Logo from "@/components/Logo";
-import Movies from "@/components/movies/movies";
-
+import UserGrid from "@/components/profiles/pruebaGrid";
 
 const Home = () => {
 
   return (
     <>
       <Logo />
-      <Movies/>
+      <UserGrid/>
     </>
   );
 };

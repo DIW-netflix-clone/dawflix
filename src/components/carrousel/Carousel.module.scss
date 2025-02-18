@@ -1,0 +1,79 @@
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 800px;  /* Aumentamos el ancho del carrusel */
+  height: 400px;     /* Reducimos la altura del carrusel */
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 8px;
+
+  &__container {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+
+  &__slide {
+    position: relative;
+    width: 100%;
+    height: 100%;       /* Aseguramos que la imagen ocupe toda la altura del carrusel */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__image {
+    width: 100%;        /* Ajustamos para que la imagen ocupe todo el ancho */
+    height: 100%;       /* Hacemos que la imagen ocupe toda la altura */
+    object-fit: cover;  /* Mantiene la proporción de la imagen recortando si es necesario */
+    transition: opacity 0.3s ease;
+  }
+
+  &__title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra el título en el medio de la imagen */
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 2; /* Asegura que el título se quede encima de la imagen */
+  }
+
+  &__button_prev,
+  &__button_next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);  /* Asegura que los botones estén centrados verticalmente */
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 1; /* Colocamos los botones por debajo del título */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  }
+
+  &__button_prev {
+    left: 20px; /* Botón de retroceder en el lado izquierdo */
+  }
+
+  &__button_next {
+    right: 20px; /* Botón de avanzar en el lado derecho */
+  }
+
+  &__slide:hover .carousel__title {
+    opacity: 1;  /* El título aparecerá cuando el mouse pase sobre la imagen */
+  }
+}

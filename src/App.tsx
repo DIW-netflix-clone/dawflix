@@ -6,6 +6,7 @@ import SignIn from "@/pages/SignIn";
 import SignUp from "@/pages/SignUp";
 import Movies from "@/pages/Movies";
 import Series from "@/pages/Series";
+import Profiles from "@/pages/Profiles";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <Route path="/films" element={<Movies />} />
           <Route path="/series" element={<Series />} />
           <Route path="/categories" element={<div>Categories</div>} />
-
+          <Route path="/profiles" element={<Profiles/>}/>
           {/* Auth */}
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
