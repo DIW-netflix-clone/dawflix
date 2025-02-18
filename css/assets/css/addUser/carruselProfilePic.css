@@ -1,0 +1,20 @@
+
+
+#carruselProfilePic {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#carruselProfilePic > img {
+    width: 175px;
+    border-radius: 20px;
+
+    opacity:50%;
+
+    margin: 0 10px;
+}
+
+#carruselProfilePic > img:hover {
+    opacity: 1;
+}

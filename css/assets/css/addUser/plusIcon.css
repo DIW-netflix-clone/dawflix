@@ -1,0 +1,10 @@
+#infoNewProfile_plusIcon {
+    display: flex;
+    align-items: center;
+}
+
+#infoNewProfile_plusIcon > i {
+    font-size: 115px;
+
+    color: brown;
+}

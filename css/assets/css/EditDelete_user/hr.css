@@ -1,0 +1,12 @@
+#horizontalLine {
+    margin-top: 30px;
+    margin-right: 10%;
+    margin-left: 10%;
+    margin-bottom: 10px;
+
+    width: 95%;
+    height: 10px;
+    background-color: white;
+
+    border-radius: 90px;
+}

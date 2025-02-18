@@ -1,0 +1,21 @@
+#profilePic {
+    width: 120px;
+    height: 120px;
+
+    border-radius: 10%;
+}
+
+#infoProfile {
+    display: flex;
+    flex-direction: column;
+
+    margin: 10px;
+}
+
+#infoProfile > .profileInput-style {
+    height: 25px;
+    margin: 0px 5px 5px 0px;
+    border-radius: 10px;
+    background: #939393;
+    border-width: 0px;
+}

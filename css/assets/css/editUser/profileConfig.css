@@ -1,0 +1,7 @@
+#profileConfig {
+    width: 80%;
+}
+
+#profileConfig > div > span {
+    font-size: 100px;
+}

@@ -1,0 +1,9 @@
+.inputText > .profileInput-style {
+    height: 25px;
+    /* width: 120%; */
+
+    border-radius: 8px;
+
+    background: #939393;
+    border-width: 0px;
+}

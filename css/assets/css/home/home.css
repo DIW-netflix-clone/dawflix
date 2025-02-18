@@ -1,0 +1,60 @@
+.top {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.home-body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profiles {
+    position: relative;
+
+}
+
+.profileAccount {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.imageProfile {
+    margin: 5px;
+}
+
+.profileAccount_addPrifile {
+    position: absolute;
+
+    top: 15%;
+    right: 50%;
+    font-size: 80px;
+    color: brown;
+
+    transform: translateX(50%);
+    transition: all 0.3s ease-in;
+}
+
+.profileAccount_addPrifile:hover {
+    font-size: 90px;
+    top: 10%;
+}
+
+.leftArrow, .rightArrow {
+    position: absolute;
+    z-index: 2;
+
+    color: brown;
+    font-size: 40px;
+}
+
+.commingSoon {
+    margin-top: 50px;
+    border-radius: 20px;
+
+    overflow: hidden;
+}

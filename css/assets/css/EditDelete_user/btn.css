@@ -1,0 +1,29 @@
+#btn-logoff {
+    padding-right: 10px;
+
+    font-size: 30px;
+    color: whitesmoke;
+
+    transition: all 0.3s ease-in-out;
+}
+
+#btn-logoff:hover {
+    rotate: 180deg;
+}
+
+#profileConfig, #profileConfig_bot-btn, #profileConfig_top-btn{
+    display: flex;
+    flex-direction: column;
+}
+
+#profileConfig_bot-btn {
+    text-align: end;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+#profileConfig_top-btn {
+    text-align: start;
+    line-height: 40px;
+    font-weight: bold;
+}

@@ -1,0 +1,19 @@
+.form-text {
+    display: flex;
+    flex-direction: row;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: row;
+}
+
+.form-input-style {
+    border-radius: 10px;
+    background: #939393;
+
+    height: 36px;
+    border-width: 0px;
+
+    width: 80%;
+}

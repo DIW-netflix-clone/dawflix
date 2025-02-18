@@ -1,0 +1,18 @@
+#addProfile_plusIcon {
+    display: flex;
+    align-items: center;
+}
+
+#addProfile_plusIcon > i {
+    font-size: 60px;
+    margin: 10px;
+
+    color: red;
+
+    transition: all 0.3s ease-in-out;
+}
+
+#addProfile_plusIcon > i:hover {
+    font-size: 70px;
+    margin: 0%;
+}
