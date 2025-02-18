@@ -1,96 +1,166 @@
-import React, { useState } from 'react';
-import styles from './pruebaGrid.module.scss';
+import React, { useState, useEffect } from "react";
+import styles from './pruebaGrid.module.scss'; // Archivo SCSS para estilos
+import { isSignIn } from "@/firebase/auth";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { FirestoreDB } from "@/firebase/firebaseInit";
 
-interface UserCardProps {
-  name: string;
-  imageUrl: string;
+interface Perfil {
+  id: number;
+  nombre: string;
+  imagen: string;
 }
 
-const UserCard: React.FC<UserCardProps> = ({ name, imageUrl }) => {
-  return (
-    <div className={styles.user_card}>
-      <img src={imageUrl} alt={name} className={styles.user_image} />
-      <p className={styles.user_name}>{name}</p>
-    </div>
-  );
-};
+const PerfilGrid: React.FC = () => {
+  const [perfiles, setPerfiles] = useState<Perfil[]>([]);
 
-const UserGrid: React.FC = () => {
-  const [users, setUsers] = useState([
-    { id: 1, name: 'Usuario 1', imageUrl: 'https://www.reddit.com/media?url=https%3A%2F%2Fpreview.redd.it%2Ftmchrxrasnf51.jpg%3Fauto%3Dwebp%26s%3D5dd6b3b59969d258d069e3ce1b2621e7643b8d53' },
-    { id: 2, name: 'Usuario 2', imageUrl: 'https://www.reddit.com/media?url=https%3A%2F%2Fpreview.redd.it%2Ftmchrxrasnf51.jpg%3Fauto%3Dwebp%26s%3D5dd6b3b59969d258d069e3ce1b2621e7643b8d53' },
-    { id: 3, name: 'Usuario 3', imageUrl: 'https://www.reddit.com/media?url=https%3A%2F%2Fpreview.redd.it%2Ftmchrxrasnf51.jpg%3Fauto%3Dwebp%26s%3D5dd6b3b59969d258d069e3ce1b2621e7643b8d53' },
-    { id: 4, name: 'Usuario 4', imageUrl: 'https://www.reddit.com/media?url=https%3A%2F%2Fpreview.redd.it%2Ftmchrxrasnf51.jpg%3Fauto%3Dwebp%26s%3D5dd6b3b59969d258d069e3ce1b2621e7643b8d53' },
-    { id: 5, name: 'Usuario 5', imageUrl: 'https://www.reddit.com/media?url=https%3A%2F%2Fpreview.redd.it%2Ftmchrxrasnf51.jpg%3Fauto%3Dwebp%26s%3D5dd6b3b59969d258d069e3ce1b2621e7643b8d53' },
-    { id: 6, name: 'Usuario 6', imageUrl: 'https://www.reddit.com/media?url=https%3A%2F%2Fpreview.redd.it%2Ftmchrxrasnf51.jpg%3Fauto%3Dwebp%26s%3D5dd6b3b59969d258d069e3ce1b2621e7643b8d53' },
-  ]);
-
+  // Estado para controlar la visibilidad del modal
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [newUserName, setNewUserName] = useState('');
-  const [selectedImageUrl, setSelectedImageUrl] = useState('');
-  
-  const availableImages = [
-    "https://www.reddit.com/media?url=https%3A%2F%2Fpreview.redd.it%2Ftmchrxrasnf51.jpg%3Fauto%3Dwebp%26s%3D5dd6b3b59969d258d069e3ce1b2621e7643b8d53",  
-    "https://m.media-amazon.com/images/I/5154d3BdWfL._AC_UF894,1000_QL80_.jpg",  
-    "https://www.sopitas.com/wp-content/uploads/2018/10/Mapache-3.png",  
-    "https://st.depositphotos.com/5447696/61629/i/450/depositphotos_616297704-stock-photo-raccoon-racoon-common-north-american.jpg",  
-    "https://img.freepik.com/fotos-premium/mapache-gordo-sentado-suelo-bosque_87934-1465.jpg"  
-  ];
+  const [newNombre, setNewNombre] = useState("");
+  const [newImagen, setNewImagen] = useState("");
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  // Estado para almacenar el UID
+  const [uid, setUid] = useState<string | null>(null);
 
-  const handleAddUser = () => {
-    if (newUserName && selectedImageUrl) {
-      const newUser = {
-        id: users.length + 1,
-        name: newUserName,
-        imageUrl: selectedImageUrl,
-      };
-      setUsers([...users, newUser]);
-      setNewUserName('');
-      setSelectedImageUrl('');
-      closeModal();
+  // Usamos useEffect para obtener el UID del usuario cuando el componente se monta
+  useEffect(() => {
+    const obtenerUid = async () => {
+      const userUid = await isSignIn();  // Obtener UID si el usuario está autenticado
+      setUid(userUid); // Guardamos el UID en el estado
+    };
+
+    obtenerUid();
+  }, []);  // Se ejecuta solo una vez, cuando el componente se monta
+
+  // Este useEffect se ejecutará cada vez que el estado `uid` cambie
+  useEffect(() => {
+    if (uid === null) {
+      console.log("El usuario no está autenticado.");
+    } else {
+      console.log(`El usuario está autenticado, UID: ${uid}`);
     }
+  }, [uid]);  // Esto asegura que se ejecutará cada vez que `uid` cambie
+
+  // Si no hay perfiles, se abre el modal automáticamente
+  useEffect(() => {
+    if (perfiles.length === 0) {
+      abrirModal();  // Abre el modal si no hay perfiles
+    }
+  }, [perfiles]);  // Solo se ejecuta cuando el array de perfiles cambia
+
+  // Función para abrir el modal
+  const abrirModal = () => {
+    setIsModalOpen(true);
   };
 
-  return (
-    <div className={styles.user_grid_container}>
-      <div className={styles.user_grid}>
-        {users.map((user) => (
-          <UserCard key={user.id} name={user.name} imageUrl={user.imageUrl} />
-        ))}
-      </div>
-      <button className={styles.add_profile_btn} onClick={openModal}>+</button>
+  // Función para cerrar el modal
+  const cerrarModal = () => {
+    setIsModalOpen(false);
+  };
 
+  const agregarPerfil = async () => {
+    if (!uid) {
+      console.error("El usuario no está autenticado. No se puede agregar el perfil.");
+      return;
+    }
+  
+    const nuevoPerfil: Perfil = {
+      id: perfiles.length + 1, // Podrías usar Firestore para autogenerar IDs
+      nombre: newNombre,
+      imagen: newImagen,
+    };
+  
+    setPerfiles([...perfiles, nuevoPerfil]);
+    setNewNombre("");
+    setNewImagen("");
+  
+    try {
+      // Obtener el documento del usuario para ver si ya tiene perfiles
+      const docRef = doc(FirestoreDB, "users", uid);
+      const docSnap = await getDoc(docRef);
+  
+      // Obtener el email del usuario, que debe estar almacenado en la autenticación
+      const userEmail = uid; // Si el uid es el email, reemplázalo si es necesario. Si tienes una referencia separada para email, obténla aquí
+  
+      if (docSnap.exists()) {
+        // Si el usuario ya tiene perfiles, agregar el nuevo perfil a la lista existente
+        const data = docSnap.data();
+        const perfilesExistentes = data?.perfiles || [];
+        const emailExistente = data?.email || userEmail; // Mantener el email si ya existe, o asignar el nuevo
+  
+        // Actualizar el documento con los perfiles anteriores y el nuevo perfil
+        await setDoc(docRef, {
+          email: emailExistente, // Guardar el email
+          perfiles: [...perfilesExistentes, nuevoPerfil],
+        });
+        console.log("Perfil guardado en Firestore con éxito.");
+      } else {
+        // Si no existen perfiles, se eliminan los datos previos y se guarda el nuevo perfil
+        await setDoc(docRef, {
+          email: userEmail, // Guardar el email
+          perfiles: [nuevoPerfil],
+        });
+        console.log("Nuevo perfil guardado en Firestore.");
+      }
+    } catch (error) {
+      console.error("Error al guardar el perfil en Firestore:", error);
+    }
+  
+    cerrarModal(); // Cerrar el modal después de añadir el perfil
+  };
+  
+
+  // Imágenes para elegir
+  const imagenes = [
+    "https://placehold.co/64",
+    "https://placehold.co/64/ff0000",
+    "https://placehold.co/64/00ff00",
+    "https://placehold.co/64/0000ff",
+  ];
+
+  return (
+    <div className={styles.perfil_grid_container}>
+      <div className={styles.perfil_grid}>
+        {perfiles.map((perfil) => (
+          <div key={perfil.id} className={styles.perfil_card}>
+            <img src={perfil.imagen} alt={perfil.nombre} />
+            <div className={styles.perfil_name}>{perfil.nombre}</div>
+          </div>
+        ))}
+
+        <button className={styles.add_button} onClick={abrirModal}>
+          Añadir Perfil
+        </button>
+      </div>
+      {/* Modal */}
       {isModalOpen && (
         <div className={styles.modal}>
           <div className={styles.modal_content}>
-            <h2>Añadir nuevo perfil</h2>
+            <h2>Nuevo Perfil</h2>
             <input
               type="text"
-              value={newUserName}
-              onChange={(e) => setNewUserName(e.target.value)}
-              placeholder="Nombre del perfil"
-              className={styles.input}
+              placeholder="Escribe el nombre"
+              value={newNombre}
+              onChange={(e) => setNewNombre(e.target.value)}
             />
-            <div className={styles.image_selection}>
-              <h3>Seleccionar imagen</h3>
-              <div className={styles.image_options}>
-                {availableImages.map((imageUrl, index) => (
+            <div className={styles.image_selector}>
+              <h3>Selecciona una imagen</h3>
+              <div className={styles.image_list}>
+                {imagenes.map((imagen, index) => (
                   <img
                     key={index}
-                    src={imageUrl}
-                    alt={`opcion-${index}`}
-                    className={`${styles.image_option} ${selectedImageUrl === imageUrl ? styles.selected : ''}`}
-                    onClick={() => setSelectedImageUrl(imageUrl)}
+                    src={imagen}
+                    alt={`Imagen ${index + 1}`}
+                    className={`${styles.image_item} ${newImagen === imagen ? styles.selected : ""}`}
+                    onClick={() => setNewImagen(imagen)}
                   />
                 ))}
               </div>
             </div>
             <div className={styles.modal_buttons}>
-              <button onClick={handleAddUser} className={styles.confirm_btn}>Confirmar</button>
-              <button onClick={closeModal} className={styles.cancel_btn}>Cancelar</button>
+              <button onClick={cerrarModal}>Cancelar</button>
+              <button onClick={agregarPerfil} disabled={!newNombre || !newImagen}>
+                Añadir
+              </button>
             </div>
           </div>
         </div>
@@ -99,4 +169,4 @@ const UserGrid: React.FC = () => {
   );
 };
 
-export default UserGrid;
+export default PerfilGrid;

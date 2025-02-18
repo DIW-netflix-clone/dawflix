@@ -59,7 +59,7 @@ const AuthCard =  ({ isSignIn = false }: Props) => {
         await signIn(inputEmail, hashedPassword); 
         setMessage("Login successful!"); 
         setTimeout(() => {
-          window.location.href ="/movies";
+          window.location.href ="/profiles";
         }, 1000); 
       } else {
         await createUser(inputEmail, hashedPassword); 

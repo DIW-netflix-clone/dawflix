@@ -1,5 +1,4 @@
 import Logo from "@/components/Logo";
-import PerfilGrid from "@/components/profiles/perfilGrid";
 import Carousel from "@/components/carrousel/carousel";
 import UserGrid from "@/components/profiles/pruebaGrid";
 
@@ -15,9 +14,8 @@ const Home = () => {
   return (
     <>
       <Logo />
+      
       <UserGrid/>
-      {/* <PerfilGrid/> */}
-      {/* <Carousel images={imagesList}/> */}
     </>
   );
 };
