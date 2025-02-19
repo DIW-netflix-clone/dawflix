@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Importa useNavigate para redirigir
-import styles from './pruebaGrid.module.scss'; // Archivo SCSS para estilos
+import styles from '@/styles/pages/Perfiles.module.scss'; // Archivo SCSS para estilos
 import { isSignIn } from "@/firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { FirestoreDB } from "@/firebase/firebaseInit";
 import {v4 as uuidv4} from "uuid";
+import Carousel from "../carrousel/carousel";
 
 interface Perfil {
   id: string;
@@ -165,6 +166,7 @@ const PerfilGrid: React.FC = () => {
           </div>
         </div>
       )}
+    <Carousel/>
     </div>
   );
 };

@@ -14,10 +14,16 @@
       color: rgb(179, 179, 179);
       font-size: 24px;
       font-weight: bold;
+
+      .profiles{
+        min-width:fit-content;
+      }
     }
   
     .active {
       color: var(--primary);
+      pointer-events: none;
+
     }
   }
 }

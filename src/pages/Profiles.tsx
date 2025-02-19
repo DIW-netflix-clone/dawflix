@@ -1,5 +1,5 @@
 import Logo from "@/components/Logo";
-import UserGrid from "@/components/profiles/pruebaGrid";
+import UserGrid from "@/components/profiles/Perfiles";
 
 const Home = () => {
 

@@ -1,4 +1,4 @@
-import styles from "./Logo.module.scss";
+import styles from "@/styles/pages/Logo.module.scss";
 
 const Logo = () => {
   return (

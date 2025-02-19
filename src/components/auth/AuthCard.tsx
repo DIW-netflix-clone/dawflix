@@ -1,4 +1,4 @@
-import styles from "./AuthCard.module.scss";
+import styles from "@/styles/pages/AuthCard.module.scss";
 
 import Logo from "../Logo";
 import { TiArrowRightThick } from "react-icons/ti";
