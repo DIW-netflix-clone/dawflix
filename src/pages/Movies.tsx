@@ -1,5 +1,5 @@
 import { getMovies } from "@/api/TMDB";
-import InfoContainer from "@/components/InfoContainer";
+import InfoContainerMovies from "@/components/InfoContainerMovies";
 import { MOVIE_ATOZ, MOVIE_POPULAR_SPAIN } from "@/config";
 import styles from "@/styles/pages/movies.module.scss";
 
@@ -11,7 +11,9 @@ const MoviesContainer = ({ movies }: { movies: Movie[] | null }) => {
     <div className={styles.seriesContainer}>
       {movies?.map(
         (movie) =>
-          movie.poster_path && <InfoContainer key={movie.id} serie={movie} />
+          movie.poster_path && (
+            <InfoContainerMovies key={movie.id} data={movie} />
+          )
       )}
     </div>
   );

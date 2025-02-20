@@ -31,3 +31,49 @@ export const getMovies = async (url = "discover/movie") => {
     return null;
   }
 };
+
+export const getMovideById = async (id: string) => {
+  try {
+    const { data } = await axios.get(
+      `${TMDB_URL}movie/${id}?language=en-US`,
+      options
+    );
+    return await data;
+  } catch (error: unknown) {
+    console.log(error);
+    return null;
+  }
+};
+
+export const getMovieVideosById = async (id: string) => {
+  try {
+    const { data } = await axios.get(`${TMDB_URL}movie/${id}/videos?include_video_language=en&language=en-US`, options);
+    return await data;
+  } catch (error: unknown) {
+    console.log(error);
+    return null;
+  }
+};
+
+export const getSerieById = async (id: string) => {
+  try {
+    const { data } = await axios.get(
+      `${TMDB_URL}tv/${id}?language=en-US`,
+      options
+    );
+    return await data;
+  } catch (error: unknown) {
+    console.log(error);
+    return null;
+  }
+};
+
+export const getSerieVideosById = async (id: string) => {
+  try {
+    const { data } = await axios.get(`${TMDB_URL}tv/${id}/videos?include_video_language=en&language=en-US`, options);
+    return await data;
+  } catch (error: unknown) {
+    console.log(error);
+    return null;
+  }
+};

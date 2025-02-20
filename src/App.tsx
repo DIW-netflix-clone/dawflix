@@ -8,6 +8,7 @@ import Movies from "@/pages/Movies";
 import Series from "@/pages/Series";
 import Profiles from "@/pages/Profiles";
 import DiscoverLayout from "./layouts/DiscoverLayout";
+import Display from "./pages/Display";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/films" element={<Movies />} />
             <Route path="/series" element={<Series />} />
             <Route path="/categories" element={<div>Categories</div>} />
+            <Route path="/discover/:type/:id" element={<Display />} />
           </Route>
           <Route path="/profiles" element={<Profiles />} />
           {/* Auth */}

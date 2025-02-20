@@ -1,7 +1,7 @@
 import styles from "@/styles/pages/series.module.scss";
 
 import { getSeries } from "@/api/TMDB";
-import InfoContainer from "@/components/InfoContainer";
+import InfoContainerSeries from "@/components/InfoContainerSeries";
 import { Serie } from "@/types/TMDB/Series";
 import { useEffect, useState } from "react";
 import { TV_ATOZ, TV_POPULAR_SPAIN } from "@/config";
@@ -11,7 +11,9 @@ const SeriesContainer = ({ series }: { series: Serie[] | null }) => {
     <div className={styles.seriesContainer}>
       {series?.map(
         (serie) =>
-          serie.poster_path && <InfoContainer key={serie.id} serie={serie} />
+          serie.poster_path && (
+            <InfoContainerSeries key={serie.id} data={serie} />
+          )
       )}
     </div>
   );
