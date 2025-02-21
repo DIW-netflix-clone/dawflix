@@ -7,7 +7,7 @@ import { FirestoreDB } from "@/firebase/firebaseInit";
 import {v4 as uuidv4} from "uuid";
 import Carousel from "../carrousel/carousel";
 
-interface Perfil {
+export interface Perfil {
   id: string;
   nombre: string;
   imagen: string;

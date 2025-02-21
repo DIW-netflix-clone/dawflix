@@ -6,15 +6,15 @@ import styles from "@/styles/pages/movies.module.scss";
 import { useLocation, useNavigate } from 'react-router';
 import { Movie } from "@/types/TMDB/Movies";
 import { useEffect, useState } from "react";
-import { UserProfile } from 'firebase/auth';
+import { Perfil } from '../profiles/Perfiles';
 
 const MoviesContainer = ({ movies }: { movies: Movie[] | null }) => {
   const navigate = useNavigate()
   const location = useLocation();
   const perfil = location.state.perfil || []
 
-  const handleClick = (movie: Movie, userProfile: UserProfile) => {
-    navigate('/detalles',{state:{movie, userProfile}})
+  const handleClick = (movie:Movie,perfil: Perfil) => {
+      navigate('/detalles',{state:{movie,perfil}})
   }
 
   return (

@@ -5,8 +5,8 @@ import { Link, Outlet, useLocation } from "react-router";
 const DiscoverLayout = () => {
   const path = useLocation().pathname;
   const location = useLocation();
-  const { perfil } = location.state || {}; // Obtiene el perfil desde el estado
-
+  const { perfil } = location.state || {};
+  console.log(perfil);
   if (!perfil) {
     return <div>No se ha seleccionado ningún perfil</div>;
   }

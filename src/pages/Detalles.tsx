@@ -1,8 +1,8 @@
-import LogoText from "@/components/Logos";
+import Detalles from "@/components/detalles/Detalles";
 const Home = () => {
   return (
     <>
-      <LogoText />
+      <Detalles/>
     </>
   );
 };
