@@ -1,6 +1,6 @@
 import styles from "@/styles/pages/AuthCard.module.scss";
 
-import Logo from "../Logo";
+import Logo from "../Logos";
 import { TiArrowRightThick } from "react-icons/ti";
 import { createUser, signIn } from "@/firebase/auth";
 import {useState} from "react";

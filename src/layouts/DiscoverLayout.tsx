@@ -1,4 +1,4 @@
-import Logo from "@/components/Logo";
+import { LogoIcon } from "@/components/Logos";
 import styles from "./DiscoverLayout.module.scss";
 import { Link, Outlet, useLocation } from "react-router";
 
@@ -15,7 +15,7 @@ const DiscoverLayout = () => {
   return (
     <>
       <div className={styles.container}>
-        <Logo/>
+        <LogoIcon/>
         <nav className={styles.nav}>
           <Link to={"/films"} state={{perfil}} className={ `${styles.link} ${path === "/films" ? styles.active : ""}`}>
             Films
@@ -29,7 +29,7 @@ const DiscoverLayout = () => {
           >
             Categories
           </Link>
-          <Link to={"/profiles"} className={styles.profiles}><img src={perfil.imagen} alt={perfil.nombre} /></Link>
+          <Link to={"/profiles"} className={styles.link}><img src={perfil.imagen} alt={perfil.nombre} /></Link>
         </nav>
       </div>
       <Outlet />

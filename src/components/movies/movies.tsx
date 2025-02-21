@@ -53,12 +53,12 @@ const Movies: React.FC = () => {
     <div>
       {/* Aquí puedes agregar el contenido relacionado con las películas */}
     <div className={styles.container}>
-      <h1>Series</h1>
+      <h1>Popular films in Daw<span>Flix</span></h1>
       <MoviesContainer movies={series} />
-      <h1>Popular in Spain</h1>
-      <MoviesContainer movies={seriesPopularInSpain} />
-      <h1>From A to Z</h1>
+      <h1 className={styles.right}>Trending now</h1>
       <MoviesContainer movies={seriesAToZ} />
+      <h1><span>Top 10</span> in Spain</h1>
+      <MoviesContainer movies={seriesPopularInSpain} />
     </div>
     </div>
   );

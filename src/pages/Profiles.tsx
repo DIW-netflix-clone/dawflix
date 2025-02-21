@@ -1,4 +1,4 @@
-import Logo from "@/components/Logo";
+import Logo from "@/components/Logos";
 import UserGrid from "@/components/profiles/Perfiles";
 
 const Home = () => {

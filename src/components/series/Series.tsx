@@ -34,12 +34,12 @@ const Series = () => {
 
   return (
     <div className={styles.container}>
-      <h1>Series</h1>
+      <h1>Popular series in daw<span>flix</span></h1>
       <SeriesContainer series={series} />
-      <h1>Popular in Spain</h1>
-      <SeriesContainer series={seriesPopularInSpain} />
-      <h1>From A to Z</h1>
+      <h1 className={styles.right}>Trending now</h1>
       <SeriesContainer series={seriesAToZ} />
+      <h1><span>Top 10</span> in Spain</h1>
+      <SeriesContainer series={seriesPopularInSpain} />
     </div>
   );
 };

@@ -1,9 +1,9 @@
-import Logo from "@/components/Logo";
 import Principal from "@/components/Home";
+import LogoText from "@/components/Logos";
 const Home = () => {
   return (
     <>
-      <Logo />
+      <LogoText />
       <Principal/>
     </>
   );
