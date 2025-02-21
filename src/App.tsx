@@ -9,6 +9,7 @@ import Series from "@/pages/Series";
 import Profiles from "@/pages/Profiles";
 import Detalles from "@/pages/Detalles";
 import DiscoverLayout from "./layouts/DiscoverLayout";
+import VideoPlayer from "@/components/video/VideoPlayer";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/detalles" element={<Detalles/>} />
           </Route>
           <Route path="/profiles" element={<Profiles />} />
+          <Route path="/video" element={<VideoPlayer />} />
           {/* Auth */}
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
