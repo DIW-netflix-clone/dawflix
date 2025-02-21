@@ -11,6 +11,7 @@ import {
   FaClosedCaptioning,
   FaStepForward,
   FaPause,
+  FaArrowLeft,
 } from "react-icons/fa";
 import { RiForward10Fill, RiReplay10Fill } from "react-icons/ri";
 import styles from "./DefaultVideoPlayer.module.scss";
@@ -69,6 +70,11 @@ const DefaultVideoPlayer = () => {
 
   return (
     <div className={styles.video_container}>
+
+      <button className={styles.back_button} onClick={() => window.history.back()}>
+        <FaArrowLeft />
+      </button>
+
       <ReactPlayer
         ref={playerRef}
         url={Video}

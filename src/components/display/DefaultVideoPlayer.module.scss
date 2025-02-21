@@ -7,6 +7,24 @@
   justify-content: center;
   align-items: center;
 
+  .back_button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: 1.8rem;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    z-index: 99;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
   .controls_overlay,
   .controls_bottom {
     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
