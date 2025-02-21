@@ -1,13 +1,20 @@
+* {
+  overflow: hidden; /* Evita el scroll vertical en toda la página */
+  margin: 0;
+  padding: 0;
+  font-family: var(--font);
+}
+
 .perfil_grid_container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* Mueve el contenido hacia arriba */
+  justify-content: flex-start;
   height: 100vh;
-  padding-top: 20px; /* Añadido para dar un pequeño margen desde la parte superior */
+  padding-top: 20px;
   text-align: center;
   color: black;
-  background-color: #141414; /* Fondo oscuro */
+  background-color: #141414;
 }
 
 .perfil_grid {
@@ -26,13 +33,21 @@
   align-items: center;
   cursor: pointer;
   transition: transform 0.3s ease, opacity 0.3s ease;
-  width: 180px;
+  min-width: 180px;
   height: 220px;
+  flex-shrink: 0;
 }
 
 .perfil_card img {
   width: 100%;
   height: auto;
+  border-radius: 20px;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.perfil_card img:hover {
+  opacity: 1;
 }
 
 .perfil_name {
@@ -45,27 +60,23 @@
   transform: scale(1.1);
 }
 
-.perfil_grid:hover .perfil_card:not(:hover) {
-  opacity: 0.5;
-}
-
-/* Estilo para el botón de añadir perfil */
 .add_button {
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 1em;
   cursor: pointer;
-  background-color: #e50914; /* Rojo Netflix */
+  background-color: #e50914;
   color: white;
   border: none;
   border-radius: 5px;
   transition: background-color 0.3s ease;
-  align-self: center; /* Alinea el botón debajo de los perfiles */
+  align-self: center;
 }
 
 .add_button:hover {
   background-color: #f40612;
 }
+
 
 .modal {
   position: fixed;
