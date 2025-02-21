@@ -1,7 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-// import './Detalles.scss'; // Asegúrate de importar el SCSS
-
+import styles from "@/styles/pages/Detalles.module.scss";
 const Detalles: React.FC = () => {
   const location = useLocation();
   const movie = location.state?.movie;
@@ -12,7 +11,7 @@ const Detalles: React.FC = () => {
   }
 
   return (
-    <div className="detalles-container">
+    <div className={styles.detalles_container}>
       <img src={`${url}${movie.poster_path}`} alt={movie.title} />
       <div>
         <h1>{movie.title}</h1>
