@@ -20,15 +20,15 @@ const MoviesContainer = ({ movies }: { movies: Movie[] | null }) => {
 };
 
 const Movies = () => {
-  const [series, setSeries] = useState<Movie[] | null>(null);
-  const [seriesPopularInSpain, setSeriesPopularInSpain] = useState<
+  const [movies, setMovies] = useState<Movie[] | null>(null);
+  const [moviesPopularInSpain, setMoviesPopularInSpain] = useState<
     Movie[] | null
   >(null);
-  const [seriesAToZ, setSeriesAToZ] = useState<Movie[] | null>(null);
+  const [moviesAToZ, setMoviesAToZ] = useState<Movie[] | null>(null);
   const ObtainMovies = async () => {
-    setSeries(await getMovies());
-    setSeriesPopularInSpain(await getMovies(MOVIE_POPULAR_SPAIN));
-    setSeriesAToZ(await getMovies(MOVIE_ATOZ));
+    setMovies(await getMovies());
+    setMoviesPopularInSpain(await getMovies(MOVIE_POPULAR_SPAIN));
+    setMoviesAToZ(await getMovies(MOVIE_ATOZ));
   };
 
   useEffect(() => {
@@ -37,12 +37,12 @@ const Movies = () => {
 
   return (
     <div className={styles.container}>
-      <h1>Series</h1>
-      <MoviesContainer movies={series} />
+      <h1>Lastest updates</h1>
+      <MoviesContainer movies={movies} />
       <h1>Popular in Spain</h1>
-      <MoviesContainer movies={seriesPopularInSpain} />
+      <MoviesContainer movies={moviesPopularInSpain} />
       <h1>From A to Z</h1>
-      <MoviesContainer movies={seriesAToZ} />
+      <MoviesContainer movies={moviesAToZ} />
     </div>
   );
 };
