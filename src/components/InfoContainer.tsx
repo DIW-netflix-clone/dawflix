@@ -1,4 +1,4 @@
-import styles from "./InfoContainer.module.scss";
+import styles from "@/styles/pages/InfoContainer.module.scss";
 
 import { TMDB_IMAGE_URL } from "@/config";
 import { Serie } from "@/types/TMDB/Series";

@@ -12,5 +12,18 @@
     &-webkit-scrollbar {
       display: none;
     }
+
+  }
+  h1{
+    font-family: var(--font);
+    width: 100%;
+    text-transform: uppercase;
+    padding: 20px;
+    span{
+      color: #ff0000
+    }
+    &.right{
+      text-align: end;
+    }
   }
 }

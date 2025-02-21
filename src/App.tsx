@@ -7,6 +7,7 @@ import SignUp from "@/pages/SignUp";
 import Movies from "@/pages/Movies";
 import Series from "@/pages/Series";
 import Profiles from "@/pages/Profiles";
+import Detalles from "@/pages/Detalles";
 import DiscoverLayout from "./layouts/DiscoverLayout";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             <Route path="/films" element={<Movies />} />
             <Route path="/series" element={<Series />} />
             <Route path="/categories" element={<div>Categories</div>} />
+            <Route path="/detalles" element={<Detalles/>} />
           </Route>
           <Route path="/profiles" element={<Profiles />} />
           {/* Auth */}

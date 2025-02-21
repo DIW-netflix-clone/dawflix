@@ -1,11 +1,8 @@
-import Movies from "@/components/movies/movies";
-
-
+import LogoText from "@/components/Logos";
 const Home = () => {
-
   return (
     <>
-      <Movies/>
+      <LogoText />
     </>
   );
 };
