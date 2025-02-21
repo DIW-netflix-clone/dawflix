@@ -4,20 +4,17 @@ import {
   getSerieById,
   getSerieVideosById,
 } from "@/api/TMDB";
-import VideoPlayer from "@/components/display/VideoPlayer";
+import DefaultVideoPlayer from "@/components/display/DefaultVideoPlayer";
 import { Movie } from "@/types/TMDB/Movies";
 import { Serie } from "@/types/TMDB/Series";
 import { VideoResponse } from "@/types/TMDB/Videos";
-import { createRef, useEffect, useState } from "react";
-import ReactPlayer from "react-player";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 const Display = () => {
   const { id, type } = useParams();
   const [data, setData] = useState<Movie | Serie | null>(null);
   const [videos, setVideos] = useState<VideoResponse | null>(null);
-  const [playing, setPlaying] = useState(true);
-  const playerRef = createRef<ReactPlayer>();
 
   useEffect(() => {
     const getData = async () => {
@@ -41,7 +38,8 @@ const Display = () => {
 
   return (
     <div style={{ minHeight: "90vh" }}>
-      <VideoPlayer id={getVideoUrl()!} />
+      {/* <VideoPlayer id={getVideoUrl()!} /> */}
+      <DefaultVideoPlayer />
     </div>
   );
 };
