@@ -24,10 +24,37 @@
     }
 
     p {
-      width: 80%;
+      width: 90%;
       margin: auto;
       font-size: 16px;
       text-align: justify;
+    }
+
+    .linkContainer {
+      margin: auto;
+      display: inline-flex;  // Asegura que la imagen y el texto estén en línea
+      align-items: center;  // Centra la imagen y el texto verticalmente
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px white solid;  // Aplica el borde alrededor del contenedor
+      background-color: #f40612;
+
+      a {
+        padding: 10px;
+        text-align: center;
+        color: white;
+        text-decoration: none;
+        margin-right: 10px;  // Espacio entre el enlace y la imagen
+
+        &:hover {
+          background-color: green;
+        }
+      }
+
+      img {
+        width: 32px;
+        height: auto;
+      }
     }
   }
 
