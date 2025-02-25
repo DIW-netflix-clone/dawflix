@@ -10,6 +10,7 @@ import Profiles from "@/pages/Profiles";
 import Detalles from "@/pages/Detalles";
 import DiscoverLayout from "./layouts/DiscoverLayout";
 import VideoPlayer from "@/components/video/VideoPlayer";
+import Generos from "./pages/Generos";
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
           <Route element={<DiscoverLayout />}>
             <Route path="/films" element={<Movies />} />
             <Route path="/series" element={<Series />} />
-            <Route path="/categories" element={<div>Categories</div>} />
+            <Route path="/categories" element={<Generos />} />
+            <Route path="/categories/:id" element={<div>Categories</div>} />
             <Route path="/detalles" element={<Detalles/>} />
           </Route>
           <Route path="/profiles" element={<Profiles />} />

@@ -47,8 +47,6 @@ const Movies: React.FC = () => {
     ObtainMovies();
   }, []);
 
-  
-
   return (
     <div>
       {/* Aquí puedes agregar el contenido relacionado con las películas */}
